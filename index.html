@@ -1,0 +1,775 @@
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,700;1,9..144,600&display=swap');
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --navy:#0F2265;--navy2:#1A3FA8;--navy3:#2350C8;
+  --gold:#F5C518;--gold2:#FFD740;
+  --red:#E63939;--green:#2ECC71;
+  --white:#fff;--offwhite:#F6F8FF;
+  --text:#0F1B40;--textm:#3D4F6E;--textl:#8492A6;
+}
+body{font-family:'Outfit',sans-serif;color:var(--text);background:var(--white);overflow-x:hidden}
+
+/* ── KEYFRAMES ── */
+@keyframes floatY{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
+@keyframes spinSlow{from{transform:rotate(0deg)}to{transform:rotate(360deg)}}
+@keyframes shimmer{0%{background-position:-200% 0}100%{background-position:200% 0}}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.7;transform:scale(1.05)}}
+@keyframes slideInLeft{from{opacity:0;transform:translateX(-50px)}to{opacity:1;transform:translateX(0)}}
+@keyframes slideInRight{from{opacity:0;transform:translateX(50px)}to{opacity:1;transform:translateX(0)}}
+@keyframes fadeUp{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:translateY(0)}}
+@keyframes ticker{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+@keyframes ovalPop{from{opacity:0;transform:scale(.8) rotate(-5deg)}to{opacity:1;transform:scale(1) rotate(0deg)}}
+@keyframes gradShift{0%{background-position:0% 50%}50%{background-position:100% 50%}100%{background-position:0% 50%}}
+
+/* ── TICKER ── */
+.ticker-wrap{
+  background:var(--gold);overflow:hidden;height:38px;
+  display:flex;align-items:center;
+}
+.ticker-track{
+  display:flex;white-space:nowrap;
+  animation:ticker 22s linear infinite;
+}
+.ticker-item{
+  font-size:12px;font-weight:700;color:var(--navy);
+  letter-spacing:1.5px;text-transform:uppercase;
+  padding:0 40px;
+  display:flex;align-items:center;gap:12px;
+}
+.ticker-dot{width:5px;height:5px;border-radius:50%;background:var(--navy2);flex-shrink:0}
+
+/* ── NAV ── */
+nav{
+  background:var(--navy);
+  display:flex;align-items:center;justify-content:space-between;
+  padding:0 5%;height:66px;
+  border-bottom:2px solid rgba(245,197,24,.25);
+  position:relative;z-index:50;
+}
+.logo-wrap{display:flex;align-items:center;gap:10px}
+.logo-mark{
+  width:38px;height:38px;border-radius:50%;
+  background:conic-gradient(var(--navy2) 0deg 90deg,var(--red) 90deg 180deg,var(--gold) 180deg 270deg,var(--green) 270deg 360deg);
+  animation:spinSlow 8s linear infinite;
+  flex-shrink:0;
+}
+.logo-text{font-family:'Fraunces',serif;font-size:21px;font-weight:700;color:white;letter-spacing:2px;text-transform:uppercase}
+.nav-links{display:flex;gap:24px;list-style:none}
+.nav-links a{
+  text-decoration:none;font-size:12px;font-weight:600;
+  color:rgba(255,255,255,.7);letter-spacing:1px;text-transform:uppercase;
+  transition:color .2s;
+}
+.nav-links a:hover{color:var(--gold)}
+.nav-cta{
+  background:var(--gold);color:var(--navy);
+  font-weight:800;font-size:13px;letter-spacing:.5px;
+  padding:10px 22px;border-radius:6px;text-decoration:none;
+  display:flex;align-items:center;gap:7px;
+  transition:background .2s;white-space:nowrap;
+}
+.nav-cta:hover{background:var(--gold2)}
+.nav-phone-icon{font-size:14px}
+
+/* ── HERO ── */
+.hero{
+  min-height:88vh;
+  background:linear-gradient(-45deg,#0F2265,#1A3FA8,#0a174f,#162e8a);
+  background-size:400% 400%;
+  animation:gradShift 10s ease infinite;
+  display:grid;grid-template-columns:1fr 1fr;
+  align-items:center;gap:0;
+  position:relative;overflow:hidden;padding:0;
+}
+.hero-dots{
+  position:absolute;inset:0;
+  background-image:radial-gradient(rgba(255,255,255,.06) 1px,transparent 1px);
+  background-size:28px 28px;
+}
+.hero-glow{
+  position:absolute;right:30%;top:50%;
+  width:600px;height:600px;
+  background:radial-gradient(circle,rgba(245,197,24,.12) 0%,transparent 65%);
+  transform:translate(50%,-50%);
+  pointer-events:none;
+}
+
+.hero-left{
+  padding:80px 5% 80px 6%;
+  position:relative;z-index:2;
+  animation:slideInLeft .9s ease both;
+}
+.hero-badge{
+  display:inline-flex;align-items:center;gap:8px;
+  background:rgba(245,197,24,.15);
+  border:1px solid rgba(245,197,24,.4);
+  color:var(--gold);font-size:11px;font-weight:700;
+  letter-spacing:2px;text-transform:uppercase;
+  padding:6px 16px;border-radius:100px;margin-bottom:28px;
+}
+.badge-dot{width:7px;height:7px;border-radius:50%;background:var(--gold);animation:pulse 1.5s ease infinite}
+.hero h1{
+  font-family:'Fraunces',serif;
+  font-size:clamp(38px,5vw,64px);
+  color:white;line-height:1.06;margin-bottom:18px;
+}
+.hero h1 em{font-style:italic;color:var(--gold)}
+.hero-sub{font-size:15px;color:rgba(255,255,255,.65);line-height:1.7;font-weight:300;margin-bottom:14px}
+.hero-tagline{
+  font-size:13px;font-weight:800;
+  color:var(--gold);letter-spacing:1px;text-transform:uppercase;
+  margin-bottom:32px;display:flex;align-items:center;gap:8px;
+}
+.trophy{font-size:16px}
+.hero-btns{display:flex;gap:14px;flex-wrap:wrap;margin-bottom:40px}
+.btn-gold{
+  background:var(--gold);color:var(--navy);
+  font-weight:800;font-size:14px;letter-spacing:.3px;
+  padding:14px 28px;border-radius:8px;text-decoration:none;
+  border:none;cursor:pointer;font-family:'Outfit',sans-serif;
+  transition:all .2s;display:inline-block;
+}
+.btn-gold:hover{background:var(--gold2);transform:translateY(-2px);box-shadow:0 8px 24px rgba(245,197,24,.35)}
+.btn-white{
+  background:transparent;color:white;
+  font-weight:500;font-size:14px;
+  padding:14px 24px;border-radius:8px;text-decoration:none;
+  border:1.5px solid rgba(255,255,255,.3);transition:all .2s;display:inline-block;
+}
+.btn-white:hover{border-color:white;background:rgba(255,255,255,.08)}
+.hero-stats{display:flex;gap:36px;flex-wrap:wrap}
+.hstat-num{font-family:'Fraunces',serif;font-size:34px;font-weight:700;color:white;line-height:1}
+.hstat-num span{color:var(--gold)}
+.hstat-label{font-size:12px;color:rgba(255,255,255,.5);margin-top:2px;font-weight:300}
+
+/* ── COUPLE ILLUSTRATION ── */
+.hero-right{
+  position:relative;z-index:2;
+  display:flex;align-items:flex-end;justify-content:center;
+  padding:40px 6% 0;
+  animation:slideInRight .9s ease both;
+  height:100%;
+}
+.couple-wrap{
+  position:relative;width:100%;max-width:460px;
+  display:flex;justify-content:center;align-items:flex-end;
+}
+.couple-svg-wrap{
+  animation:floatY 4s ease-in-out infinite;
+  width:100%;
+}
+
+/* ── QUOTE FORM (overlay on hero bottom) ── */
+.quote-strip{
+  background:white;
+  padding:32px 6%;
+  display:grid;grid-template-columns:auto 1fr 1fr 1fr 1fr auto;
+  gap:16px;align-items:end;
+  box-shadow:0 -4px 32px rgba(26,63,168,.15);
+  position:relative;z-index:10;
+}
+.qs-title{
+  font-family:'Fraunces',serif;font-size:20px;font-weight:700;
+  color:var(--navy);min-width:160px;align-self:center;
+  border-right:2px solid var(--gold);padding-right:20px;
+}
+.qs-title span{display:block;font-size:12px;font-family:'Outfit',sans-serif;font-weight:400;color:var(--textl);letter-spacing:.5px;margin-top:2px}
+.qf label{display:block;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:1.3px;color:var(--textm);margin-bottom:6px}
+.qf input,.qf select{
+  width:100%;padding:11px 14px;
+  border:1.5px solid #DDE2F0;border-radius:6px;
+  font-family:'Outfit',sans-serif;font-size:13px;color:var(--text);
+  background:#F9FAFF;outline:none;transition:border-color .2s;
+}
+.qf input:focus,.qf select:focus{border-color:var(--navy2);background:white}
+.qf select{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath fill='%238492A6' d='M5 6L0 0h10z'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 12px center;background-color:#F9FAFF}
+.qsubmit{
+  background:var(--navy);color:white;
+  font-family:'Outfit',sans-serif;font-weight:700;font-size:14px;
+  padding:12px 24px;border:none;border-radius:6px;cursor:pointer;
+  white-space:nowrap;transition:background .2s;letter-spacing:.3px;
+}
+.qsubmit:hover{background:var(--navy2)}
+
+/* ── TRUST BAR ── */
+.trust-bar{
+  background:var(--navy);
+  display:flex;justify-content:center;align-items:center;
+  gap:0;flex-wrap:wrap;
+  border-top:3px solid var(--gold);
+}
+.trust-item{
+  display:flex;align-items:center;gap:10px;
+  padding:16px 32px;
+  border-right:1px solid rgba(255,255,255,.08);
+  color:rgba(255,255,255,.7);font-size:13px;font-weight:500;
+}
+.trust-item:last-child{border-right:none}
+.trust-item strong{color:white;font-size:15px;font-weight:800}
+.trust-icon{font-size:18px}
+
+/* ── SERVICES OVAL ── */
+.services-section{
+  padding:100px 3%;background:var(--offwhite);
+  overflow:hidden;
+}
+.services-header{text-align:center;margin-bottom:70px}
+.sec-tag{
+  display:inline-block;font-size:10px;font-weight:800;
+  letter-spacing:2.5px;text-transform:uppercase;color:var(--navy2);
+  background:rgba(26,63,168,.1);padding:5px 16px;border-radius:100px;
+  margin-bottom:14px;
+}
+.sec-title{
+  font-family:'Fraunces',serif;
+  font-size:clamp(26px,4vw,42px);
+  color:var(--navy);line-height:1.2;
+}
+
+.oval-container{
+  position:relative;
+  width:100%;
+  max-width:900px;
+  margin:0 auto;
+  height:520px;
+}
+.oval-ring{
+  position:absolute;
+  top:50%;left:50%;
+  transform:translate(-50%,-50%);
+  width:560px;height:380px;
+  border:2px dashed rgba(26,63,168,.2);
+  border-radius:50%;
+}
+.oval-ring-inner{
+  position:absolute;
+  top:50%;left:50%;
+  transform:translate(-50%,-50%);
+  width:300px;height:200px;
+  border:1.5px solid rgba(245,197,24,.3);
+  border-radius:50%;
+}
+.oval-center{
+  position:absolute;top:50%;left:50%;
+  transform:translate(-50%,-50%);
+  width:140px;height:140px;
+  background:linear-gradient(135deg,var(--navy),var(--navy2));
+  border-radius:50%;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  box-shadow:0 8px 32px rgba(26,63,168,.35);
+  z-index:10;
+  animation:pulse 3s ease infinite;
+}
+.oval-center-logo{
+  width:36px;height:36px;border-radius:50%;
+  background:conic-gradient(var(--navy2) 0deg 90deg,var(--red) 90deg 180deg,var(--gold) 180deg 270deg,var(--green) 270deg 360deg);
+  margin-bottom:6px;
+}
+.oval-center span{font-size:10px;font-weight:800;color:white;letter-spacing:1.5px;text-transform:uppercase}
+
+.oval-card{
+  position:absolute;
+  width:130px;
+  transform:translate(-50%,-50%);
+  z-index:5;
+  opacity:0;
+  animation:ovalPop .5s ease forwards;
+}
+.oval-card:nth-child(2){animation-delay:.1s}
+.oval-card:nth-child(3){animation-delay:.2s}
+.oval-card:nth-child(4){animation-delay:.3s}
+.oval-card:nth-child(5){animation-delay:.4s}
+.oval-card:nth-child(6){animation-delay:.5s}
+.oval-card:nth-child(7){animation-delay:.6s}
+
+.oval-inner{
+  background:white;
+  border-radius:18px;
+  padding:18px 14px;
+  text-align:center;
+  border:1.5px solid #E0E6F8;
+  cursor:pointer;
+  transition:all .3s;
+  box-shadow:0 4px 16px rgba(26,63,168,.08);
+}
+.oval-inner:hover{
+  border-color:var(--navy2);
+  transform:scale(1.08);
+  box-shadow:0 10px 32px rgba(26,63,168,.2);
+}
+.oval-icon{font-size:28px;margin-bottom:8px;display:block}
+.oval-name{font-size:11px;font-weight:700;color:var(--navy);letter-spacing:.5px;text-transform:uppercase;line-height:1.3}
+.oval-connector{
+  position:absolute;top:50%;left:50%;
+  width:1px;background:rgba(26,63,168,.15);
+  transform-origin:0 0;
+  pointer-events:none;z-index:1;
+}
+
+/* ── WHY US ── */
+.why{
+  padding:90px 6%;
+  display:grid;grid-template-columns:1fr 1fr;gap:70px;align-items:center;
+  background:white;
+}
+.why-visual{
+  background:linear-gradient(135deg,var(--navy),var(--navy2));
+  border-radius:20px;padding:44px;
+  position:relative;overflow:hidden;
+}
+.why-visual::before{
+  content:'';position:absolute;top:-60px;right:-60px;
+  width:200px;height:200px;border-radius:50%;
+  background:rgba(245,197,24,.1);
+}
+.why-stat{display:flex;align-items:center;gap:20px;position:relative;z-index:2}
+.wnum{font-family:'Fraunces',serif;font-size:52px;font-weight:700;color:var(--gold);line-height:1;min-width:100px}
+.wtext strong{display:block;font-size:15px;color:white;font-weight:600;margin-bottom:3px}
+.wtext span{font-size:13px;color:rgba(255,255,255,.55);font-weight:300}
+.wdiv{height:1px;background:rgba(255,255,255,.08);margin:24px 0}
+.reasons{display:flex;flex-direction:column;gap:22px;margin-top:32px}
+.reason{display:flex;gap:16px;align-items:flex-start}
+.ricon{
+  width:44px;height:44px;min-width:44px;border-radius:10px;
+  background:rgba(26,63,168,.08);
+  display:flex;align-items:center;justify-content:center;font-size:20px;
+}
+.reason h4{font-size:15px;font-weight:700;color:var(--navy);margin-bottom:4px}
+.reason p{font-size:13px;color:var(--textl);line-height:1.6;font-weight:300}
+
+/* ── TESTIMONIALS ── */
+.testimonials{padding:90px 6%;background:var(--offwhite)}
+.tgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.tcard{
+  background:white;border-radius:14px;padding:28px;
+  border:1.5px solid #E0E6F8;
+  transition:all .3s;
+}
+.tcard:hover{transform:translateY(-4px);box-shadow:0 12px 32px rgba(26,63,168,.1);border-color:var(--navy2)}
+.tstars{color:var(--gold);font-size:16px;letter-spacing:2px;margin-bottom:14px}
+.tquote{font-family:'Fraunces',serif;font-size:15px;font-style:italic;color:var(--text);line-height:1.65;margin-bottom:20px}
+.tperson{display:flex;align-items:center;gap:12px;border-top:1px solid #F0F2FA;padding-top:16px}
+.tavatar{
+  width:38px;height:38px;border-radius:50%;
+  background:var(--navy);display:flex;align-items:center;justify-content:center;
+  font-size:13px;font-weight:700;color:white;
+}
+.tname{font-size:14px;font-weight:700;color:var(--text)}
+.tcity{font-size:12px;color:var(--textl)}
+
+/* ── CTA BANNER ── */
+.cta-banner{
+  background:linear-gradient(-45deg,#091D60,#1A3FA8,#0F2265,#2350C8);
+  background-size:400% 400%;
+  animation:gradShift 8s ease infinite;
+  padding:80px 6%;text-align:center;position:relative;overflow:hidden;
+}
+.cta-banner::before{
+  content:'';position:absolute;inset:0;
+  background-image:radial-gradient(rgba(255,255,255,.05) 1px,transparent 1px);
+  background-size:24px 24px;
+}
+.cta-banner h2{
+  font-family:'Fraunces',serif;
+  font-size:clamp(28px,4vw,48px);color:white;
+  line-height:1.15;margin-bottom:14px;position:relative;z-index:2;
+}
+.cta-banner p{font-size:16px;color:rgba(255,255,255,.65);font-weight:300;margin-bottom:32px;position:relative;z-index:2}
+.cta-btn{
+  display:inline-block;background:var(--gold);color:var(--navy);
+  font-weight:800;font-size:15px;padding:16px 40px;border-radius:8px;
+  text-decoration:none;transition:all .2s;position:relative;z-index:2;letter-spacing:.3px;
+  box-shadow:0 4px 20px rgba(245,197,24,.3);
+}
+.cta-btn:hover{background:var(--gold2);transform:translateY(-3px);box-shadow:0 10px 32px rgba(245,197,24,.4)}
+
+/* ── FOOTER ── */
+footer{background:#050E2A;color:rgba(255,255,255,.5);padding:60px 6% 28px}
+.ftop{
+  display:grid;grid-template-columns:1.6fr 1fr 1fr 1.2fr;gap:48px;
+  padding-bottom:48px;border-bottom:1px solid rgba(255,255,255,.07);margin-bottom:28px;
+}
+.flogo{font-family:'Fraunces',serif;font-size:22px;font-weight:700;color:white;letter-spacing:2px;text-transform:uppercase;margin-bottom:12px}
+.fdesc{font-size:13px;line-height:1.7;font-weight:300;max-width:230px;margin-bottom:16px}
+.fcontact{display:flex;flex-direction:column;gap:5px}
+.fcontact a,.fcontact span{font-size:13px;color:rgba(255,255,255,.45);text-decoration:none}
+.fcontact a:hover{color:var(--gold)}
+.fcol h5{font-size:10px;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:white;margin-bottom:18px}
+.fcol ul{list-style:none;display:flex;flex-direction:column;gap:8px}
+.fcol a{text-decoration:none;color:rgba(255,255,255,.4);font-size:13px;transition:color .2s}
+.fcol a:hover{color:var(--gold)}
+.hours{display:flex;flex-direction:column;gap:6px}
+.hrow{display:flex;justify-content:space-between;font-size:13px}
+.hrow span:first-child{color:rgba(255,255,255,.45)}
+.hrow span:last-child{color:rgba(255,255,255,.8);font-weight:600}
+.fbot{display:flex;justify-content:space-between;align-items:center;font-size:12px;flex-wrap:wrap;gap:12px}
+.fbot a{color:rgba(255,255,255,.3);text-decoration:none}
+.fbot a:hover{color:var(--gold)}
+
+/* ── SCROLL REVEAL ── */
+.reveal{opacity:0;transform:translateY(28px);transition:opacity .7s,transform .7s}
+.reveal.on{opacity:1;transform:translateY(0)}
+</style>
+
+<!-- TICKER -->
+<div class="ticker-wrap">
+  <div class="ticker-track">
+    <span class="ticker-item"><span class="ticker-dot"></span>Seguro de Auto</span>
+    <span class="ticker-item"><span class="ticker-dot"></span>Seguro de Casa</span>
+    <span class="ticker-item"><span class="ticker-dot"></span>Obama Care desde $0</span>
+    <span class="ticker-item"><span class="ticker-dot"></span>Seguro Comercial</span>
+    <span class="ticker-item"><span class="ticker-dot"></span>Renters Insurance</span>
+    <span class="ticker-item"><span class="ticker-dot"></span>Hablamos Español</span>
+    <span class="ticker-item"><span class="ticker-dot"></span>703-256-1720</span>
+    <span class="ticker-item"><span class="ticker-dot"></span>Seguro de Auto</span>
+    <span class="ticker-item"><span class="ticker-dot"></span>Seguro de Casa</span>
+    <span class="ticker-item"><span class="ticker-dot"></span>Obama Care desde $0</span>
+    <span class="ticker-item"><span class="ticker-dot"></span>Seguro Comercial</span>
+    <span class="ticker-item"><span class="ticker-dot"></span>Renters Insurance</span>
+    <span class="ticker-item"><span class="ticker-dot"></span>Hablamos Español</span>
+    <span class="ticker-item"><span class="ticker-dot"></span>703-256-1720</span>
+  </div>
+</div>
+
+<!-- NAV -->
+<nav>
+  <div class="logo-wrap">
+    <div class="logo-mark"></div>
+    <span class="logo-text">Álamo</span>
+  </div>
+  <ul class="nav-links">
+    <li><a href="#">Inicio</a></li>
+    <li><a href="#servicios">Seguros</a></li>
+    <li><a href="#">Taxes</a></li>
+    <li><a href="#contacto">Contacto</a></li>
+  </ul>
+  <a href="tel:7032561720" class="nav-cta"><span class="nav-phone-icon">📞</span>703-256-1720</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-dots"></div>
+  <div class="hero-glow"></div>
+
+  <div class="hero-left">
+    <div class="hero-badge"><span class="badge-dot"></span>Agencia Certificada · Virginia</div>
+    <h1>Seguros de Auto<br><em>al mejor precio</em></h1>
+    <p class="hero-sub">El seguro de auto es un requisito legal en Virginia. Te ayudamos a cumplir con la ley y protegerte en caso de accidente.</p>
+    <p class="hero-tagline"><span class="trophy">🏆</span> El seguro de auto a los precios más bajos</p>
+    <div class="hero-btns">
+      <a href="#cotizar" class="btn-gold">Cotización Gratis</a>
+      <a href="tel:7032561720" class="btn-white">Llamar Ahora</a>
+    </div>
+    <div class="hero-stats">
+      <div>
+        <div class="hstat-num">20<span>+</span></div>
+        <div class="hstat-label">Años de experiencia</div>
+      </div>
+      <div>
+        <div class="hstat-num">10<span>+</span></div>
+        <div class="hstat-label">Aseguradoras</div>
+      </div>
+      <div>
+        <div class="hstat-num">⭐<span>5.0</span></div>
+        <div class="hstat-label">Google Reviews</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SVG Couple Illustration -->
+  <div class="hero-right">
+    <div class="couple-wrap">
+      <div class="couple-svg-wrap">
+        <svg viewBox="0 0 420 440" xmlns="http://www.w3.org/2000/svg" style="width:100%;max-width:420px">
+          <!-- glow under couple -->
+          <ellipse cx="210" cy="420" rx="150" ry="18" fill="rgba(245,197,24,0.18)"/>
+
+          <!-- WOMAN (left) -->
+          <!-- body/dress -->
+          <path d="M130 260 Q115 290 110 360 Q130 370 165 368 Q175 320 175 280 Z" fill="#E8A87C"/>
+          <path d="M130 260 Q115 290 110 360 Q130 370 165 368 Q175 320 175 280 Z" fill="#E63939" opacity=".85"/>
+          <!-- skirt flare -->
+          <path d="M110 360 Q95 390 100 420 Q135 425 170 420 Q172 390 165 368 Z" fill="#C0392B"/>
+          <!-- blouse detail -->
+          <path d="M130 260 Q148 255 165 260 Q160 290 155 300 Q148 295 140 298 Q133 292 130 285 Z" fill="#F0E6D3"/>
+          <!-- neck -->
+          <rect x="143" y="228" width="18" height="32" rx="8" fill="#D4956A"/>
+          <!-- head -->
+          <ellipse cx="152" cy="215" rx="32" ry="35" fill="#D4956A"/>
+          <!-- hair -->
+          <path d="M120 205 Q125 165 152 160 Q179 165 184 205 Q178 195 170 192 Q160 188 152 190 Q144 188 134 192 Q126 195 120 205Z" fill="#2C1A0E"/>
+          <path d="M120 205 Q115 225 118 240 Q122 230 125 220Z" fill="#2C1A0E"/>
+          <path d="M184 205 Q189 225 186 240 Q182 230 179 220Z" fill="#2C1A0E"/>
+          <!-- hair bun -->
+          <circle cx="152" cy="168" r="14" fill="#2C1A0E"/>
+          <!-- face smile -->
+          <circle cx="143" cy="213" r="4" fill="#8B5E3C"/>
+          <circle cx="161" cy="213" r="4" fill="#8B5E3C"/>
+          <path d="M144 225 Q152 232 160 225" fill="none" stroke="#8B5E3C" stroke-width="2" stroke-linecap="round"/>
+          <!-- cheeks -->
+          <circle cx="138" cy="220" r="7" fill="rgba(255,120,100,.25)"/>
+          <circle cx="166" cy="220" r="7" fill="rgba(255,120,100,.25)"/>
+          <!-- arms woman -->
+          <path d="M130 265 Q105 280 100 295 Q106 300 112 295 Q118 282 135 272Z" fill="#E8A87C"/>
+          <path d="M165 265 Q185 278 195 305 Q188 310 183 305 Q177 284 162 272Z" fill="#E8A87C"/>
+
+          <!-- GOLD SHIELD ICON between them -->
+          <g transform="translate(195,290)">
+            <path d="M15 3 L27 8 L27 18 Q27 26 15 31 Q3 26 3 18 L3 8 Z" fill="rgba(245,197,24,.25)" stroke="rgba(245,197,24,.6)" stroke-width="1.5"/>
+            <text x="15" y="22" text-anchor="middle" font-size="10" fill="#F5C518" font-weight="700">✓</text>
+          </g>
+
+          <!-- MAN (right) -->
+          <!-- pants -->
+          <path d="M260 300 Q248 340 245 420 L270 420 Q272 370 275 330Z" fill="#1a2a5e"/>
+          <path d="M290 300 Q302 340 305 420 L280 420 Q278 370 275 330Z" fill="#1a2a5e"/>
+          <!-- shirt/jacket -->
+          <path d="M248 235 Q235 260 233 300 Q248 312 275 310 Q302 312 317 300 Q315 260 302 235 Z" fill="#1A3FA8"/>
+          <!-- collar/tie -->
+          <path d="M265 235 Q275 245 285 235 Q281 255 275 265 Q269 255 265 235Z" fill="#F5C518"/>
+          <path d="M268 235 Q275 240 282 235 Q280 248 275 258 Q270 248 268 235Z" fill="#C8972A"/>
+          <!-- lapels -->
+          <path d="M265 235 Q255 242 250 255 Q260 250 268 245Z" fill="#F0F4FF"/>
+          <path d="M285 235 Q295 242 300 255 Q290 250 282 245Z" fill="#F0F4FF"/>
+          <!-- neck -->
+          <rect x="267" y="208" width="16" height="30" rx="7" fill="#C8845A"/>
+          <!-- head man -->
+          <ellipse cx="275" cy="192" rx="30" ry="33" fill="#C8845A"/>
+          <!-- hair man -->
+          <path d="M245 185 Q250 158 275 155 Q300 158 305 185 Q298 172 285 169 Q275 167 265 169 Q252 172 245 185Z" fill="#1A1A1A"/>
+          <!-- face man -->
+          <circle cx="266" cy="191" r="4" fill="#8B5E3C"/>
+          <circle cx="284" cy="191" r="4" fill="#8B5E3C"/>
+          <path d="M266 202 Q275 210 284 202" fill="none" stroke="#8B5E3C" stroke-width="2" stroke-linecap="round"/>
+          <!-- cheeks man -->
+          <circle cx="260" cy="197" r="6" fill="rgba(255,120,100,.2)"/>
+          <circle cx="290" cy="197" r="6" fill="rgba(255,120,100,.2)"/>
+          <!-- mustache -->
+          <path d="M268 196 Q275 200 282 196" fill="none" stroke="#4A2C0E" stroke-width="2.5" stroke-linecap="round"/>
+          <!-- arm man around woman -->
+          <path d="M250 245 Q222 255 205 265 Q208 272 215 270 Q230 262 252 255Z" fill="#C8845A"/>
+          <!-- arm man other side -->
+          <path d="M300 245 Q320 260 325 285 Q318 290 313 285 Q310 268 296 255Z" fill="#C8845A"/>
+
+          <!-- floating stars around them -->
+          <text x="95" y="170" font-size="14" fill="rgba(245,197,24,.7)" style="animation:pulse 2s ease infinite">★</text>
+          <text x="330" y="200" font-size="10" fill="rgba(245,197,24,.5)" style="animation:pulse 2.5s ease infinite">★</text>
+          <text x="105" y="310" font-size="10" fill="rgba(26,63,168,.4)" style="animation:pulse 3s ease infinite">✦</text>
+          <text x="340" y="140" font-size="12" fill="rgba(245,197,24,.4)" style="animation:pulse 1.8s ease infinite">✦</text>
+
+          <!-- trust badge above -->
+          <rect x="145" y="50" width="130" height="38" rx="19" fill="rgba(245,197,24,0.18)" stroke="rgba(245,197,24,.5)" stroke-width="1.5"/>
+          <text x="210" y="69" text-anchor="middle" font-size="11" fill="#F5C518" font-weight="700" letter-spacing="1">¡FAMILIA PROTEGIDA!</text>
+          <line x1="210" y1="88" x2="210" y2="106" stroke="rgba(245,197,24,.4)" stroke-width="1.5" stroke-dasharray="3,3"/>
+        </svg>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- QUOTE FORM STRIP -->
+<div class="quote-strip" id="cotizar">
+  <div class="qs-title">Cotización<br>Gratis<span>Sin compromiso</span></div>
+  <div class="qf"><label>Nombre</label><input type="text" placeholder="Tu nombre"></div>
+  <div class="qf"><label>Teléfono</label><input type="tel" placeholder="(703) ___-____"></div>
+  <div class="qf"><label>Tipo de seguro</label>
+    <select>
+      <option value="">Selecciona…</option>
+      <option>Auto</option><option>Casa</option><option>Salud</option>
+      <option>Comercial</option><option>Renters</option><option>Trabajo</option>
+    </select>
+  </div>
+  <div class="qf"><label>Código postal</label><input type="text" placeholder="22003"></div>
+  <button class="qsubmit" onclick="this.textContent='✓ ¡Enviado!';this.style.background='#1D9E75';setTimeout(()=>{this.textContent='Cotizar →';this.style.background=''},3000)">Cotizar →</button>
+</div>
+
+<!-- TRUST BAR -->
+<div class="trust-bar">
+  <div class="trust-item"><span class="trust-icon">🗣️</span><div><strong>Habla Hispana</strong><br>100% en Español</div></div>
+  <div class="trust-item"><span class="trust-icon">📅</span><div><strong>20+ Años</strong><br>de experiencia</div></div>
+  <div class="trust-item"><span class="trust-icon">🏢</span><div><strong>10+ Compañías</strong><br>comparamos precios</div></div>
+  <div class="trust-item"><span class="trust-icon">⭐</span><div><strong>5 Estrellas</strong><br>Google Reviews</div></div>
+  <div class="trust-item"><span class="trust-icon">📞</span><div><strong>703-256-1720</strong><br>Llámanos hoy</div></div>
+</div>
+
+<!-- SERVICES OVAL -->
+<section class="services-section" id="servicios">
+  <div class="services-header reveal">
+    <div class="sec-tag">Nuestros servicios</div>
+    <h2 class="sec-title">Tipos de seguros que ofrecemos</h2>
+  </div>
+
+  <div class="oval-container" id="ovalWrap">
+    <div class="oval-ring"></div>
+    <div class="oval-ring-inner"></div>
+
+    <!-- center -->
+    <div class="oval-center">
+      <div class="oval-center-logo"></div>
+      <span>Álamo</span>
+    </div>
+
+    <!-- 6 cards positioned around oval - will be placed by JS -->
+    <div class="oval-card" id="oc0" style="top:50%;left:50%">
+      <div class="oval-inner"><span class="oval-icon">🚗</span><div class="oval-name">Auto</div></div>
+    </div>
+    <div class="oval-card" id="oc1" style="top:50%;left:50%">
+      <div class="oval-inner"><span class="oval-icon">🏠</span><div class="oval-name">Casa</div></div>
+    </div>
+    <div class="oval-card" id="oc2" style="top:50%;left:50%">
+      <div class="oval-inner"><span class="oval-icon">🏢</span><div class="oval-name">Comercial</div></div>
+    </div>
+    <div class="oval-card" id="oc3" style="top:50%;left:50%">
+      <div class="oval-inner"><span class="oval-icon">👷</span><div class="oval-name">Trabajo</div></div>
+    </div>
+    <div class="oval-card" id="oc4" style="top:50%;left:50%">
+      <div class="oval-inner"><span class="oval-icon">🏥</span><div class="oval-name">Salud</div></div>
+    </div>
+    <div class="oval-card" id="oc5" style="top:50%;left:50%">
+      <div class="oval-inner"><span class="oval-icon">🛋️</span><div class="oval-name">Renters</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- WHY US -->
+<section class="why" id="nosotros">
+  <div class="why-visual reveal">
+    <div class="why-stat">
+      <div class="wnum">20+</div>
+      <div class="wtext"><strong>Años de experiencia</strong><span>Sirviendo a la comunidad latina de Virginia</span></div>
+    </div>
+    <div class="wdiv"></div>
+    <div class="why-stat">
+      <div class="wnum">10+</div>
+      <div class="wtext"><strong>Compañías aseguradoras</strong><span>Comparamos para darte el mejor precio</span></div>
+    </div>
+    <div class="wdiv"></div>
+    <div class="why-stat">
+      <div class="wnum">⭐5</div>
+      <div class="wtext"><strong>Estrellas en Google</strong><span>La agencia más valorada del área</span></div>
+    </div>
+  </div>
+  <div class="reveal">
+    <div class="sec-tag" style="display:block;margin-bottom:16px">¿Por qué elegirnos?</div>
+    <h2 class="sec-title" style="margin-bottom:18px">Por qué escoger<br>Agencia Álamo</h2>
+    <p style="font-size:15px;color:var(--textm);line-height:1.7;font-weight:300;margin-bottom:0">Somos hispanos y estamos unidos para trabajar. Llevamos más de 20 años ayudando a nuestra comunidad a encontrar el seguro más económico.</p>
+    <div class="reasons">
+      <div class="reason"><div class="ricon">🗣️</div><div><h4>Equipo 100% de habla hispana</h4><p>Te atendemos en tu idioma con más de 20 años en el mercado de seguros en Virginia.</p></div></div>
+      <div class="reason"><div class="ricon">🤝</div><div><h4>Atención al cliente muy detallada</h4><p>Cada cliente recibe asesoría personalizada. No eres un número para nosotros.</p></div></div>
+      <div class="reason"><div class="ricon">💰</div><div><h4>Comparamos más de 10 compañías</h4><p>Trabajamos con las mejores aseguradoras para garantizarte siempre el mejor precio.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="testimonials" id="testimonios">
+  <div class="services-header reveal">
+    <div class="sec-tag">Testimonios</div>
+    <h2 class="sec-title">¿Qué opinan nuestros clientes?</h2>
+  </div>
+  <div class="tgrid">
+    <div class="tcard reveal">
+      <div class="tstars">★★★★★</div>
+      <p class="tquote">"Me ayudaron a encontrar el seguro más barato para mi carro. El proceso fue muy fácil y todo en español. Los recomiendo al 100%."</p>
+      <div class="tperson"><div class="tavatar">JM</div><div><div class="tname">José Martínez</div><div class="tcity">Annandale, VA</div></div></div>
+    </div>
+    <div class="tcard reveal">
+      <div class="tstars">★★★★★</div>
+      <p class="tquote">"Llevo 5 años con la Agencia Álamo. Siempre me explican todo con detalle y me ayudan a ahorrar dinero cada año en mis seguros."</p>
+      <div class="tperson"><div class="tavatar">ML</div><div><div class="tname">María López</div><div class="tcity">Falls Church, VA</div></div></div>
+    </div>
+    <div class="tcard reveal">
+      <div class="tstars">★★★★★</div>
+      <p class="tquote">"Excelente servicio. Me consiguieron Obama Care a $0 al mes. Son muy profesionales y siempre disponibles cuando los necesito."</p>
+      <div class="tperson"><div class="tavatar">CR</div><div><div class="tname">Carlos Rodríguez</div><div class="tcity">Arlington, VA</div></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-banner">
+  <h2>Más de 20 años asegurando<br>a nuestra comunidad latina</h2>
+  <p>Somos hispanos y estamos unidos para encontrarte el seguro más económico y barato.</p>
+  <a href="#cotizar" class="cta-btn">Cotizar Gratis Ahora →</a>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="ftop">
+    <div>
+      <div class="flogo">Álamo</div>
+      <p class="fdesc">Agencia de seguros al servicio de la comunidad hispana en Virginia desde hace más de 20 años.</p>
+      <div class="fcontact">
+        <span>7540 Little River Tpke. Suite B, Annandale, VA 22003</span>
+        <a href="mailto:marcoralamo2@gmail.com">marcoralamo2@gmail.com</a>
+        <a href="tel:7032561720">Tel: 703-256-1720</a>
+        <span>Fax: 703-750-2045</span>
+      </div>
+    </div>
+    <div class="fcol"><h5>Navegación</h5><ul><li><a href="#">Inicio</a></li><li><a href="#">Seguros de Auto</a></li><li><a href="#">Taxes</a></li><li><a href="#">Blog</a></li><li><a href="#">Contacto</a></li></ul></div>
+    <div class="fcol"><h5>Servicios</h5><ul><li><a href="#">Auto</a></li><li><a href="#">Casa</a></li><li><a href="#">Comercial</a></li><li><a href="#">Trabajo</a></li><li><a href="#">Salud</a></li><li><a href="#">Renters</a></li></ul></div>
+    <div class="fcol"><h5>Horario</h5><div class="hours"><div class="hrow"><span>Lun – Vie</span><span>9:30am – 6pm</span></div><div class="hrow"><span>Sábado</span><span>10:30am – 1pm</span></div><div class="hrow"><span>Domingo</span><span>Con Cita</span></div></div></div>
+  </div>
+  <div class="fbot">
+    <span>© 2025 Agencia Álamo LLC · Todos los derechos reservados</span>
+    <div style="display:flex;gap:20px"><a href="#">Privacidad</a><a href="#">Términos</a></div>
+  </div>
+</footer>
+
+<script>
+// Oval card positioning
+(function(){
+  var wrap = document.getElementById('ovalWrap');
+  if(!wrap) return;
+  var W = wrap.offsetWidth || 900;
+  var H = 520;
+  var cx = W/2, cy = H/2;
+  var rx = Math.min(W*0.31, 270), ry = 165;
+  var n = 6;
+  for(var i=0;i<n;i++){
+    var card = document.getElementById('oc'+i);
+    if(!card) continue;
+    var angle = (i/n)*2*Math.PI - Math.PI/2;
+    var x = cx + rx*Math.cos(angle);
+    var y = cy + ry*Math.sin(angle);
+    card.style.left = x+'px';
+    card.style.top  = y+'px';
+  }
+  // connectors
+  for(var j=0;j<n;j++){
+    var card2 = document.getElementById('oc'+j);
+    if(!card2) continue;
+    var angle2 = (j/n)*2*Math.PI - Math.PI/2;
+    var ex = cx + rx*Math.cos(angle2);
+    var ey = cy + ry*Math.sin(angle2);
+    var dx = ex - cx, dy = ey - cy;
+    var len = Math.sqrt(dx*dx+dy*dy);
+    var deg = Math.atan2(dy,dx)*180/Math.PI;
+    var conn = document.createElement('div');
+    conn.className = 'oval-connector';
+    conn.style.height = (len-68)+'px';
+    conn.style.left = cx+'px';
+    conn.style.top = cy+'px';
+    conn.style.transform = 'rotate('+deg+'deg)';
+    conn.style.transformOrigin = '0 0';
+    wrap.appendChild(conn);
+  }
+})();
+
+// Scroll reveal
+var obs = new IntersectionObserver(function(es){
+  es.forEach(function(e){if(e.isIntersecting)e.target.classList.add('on')});
+},{threshold:0.1});
+document.querySelectorAll('.reveal').forEach(function(el){obs.observe(el)});
+
+// Oval cards hover orbit animation
+document.querySelectorAll('.oval-card').forEach(function(card,i){
+  card.querySelector('.oval-inner').addEventListener('mouseenter',function(){
+    this.style.background='#EEF2FF';
+  });
+  card.querySelector('.oval-inner').addEventListener('mouseleave',function(){
+    this.style.background='white';
+  });
+});
+</script>
